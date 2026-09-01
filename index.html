@@ -255,6 +255,36 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
   .store{padding:8px 13px 8px 11px;font-size:.875rem}
 }
 
+
+/* ---------- skeleton ---------- */
+@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sk{
+  background:linear-gradient(90deg,
+    var(--sk-a) 0%, var(--sk-b) 38%, var(--sk-a) 76%) 0 0/200% 100%;
+  animation:sk-shimmer 1.5s linear infinite;border-radius:6px;
+}
+:root{--sk-a:rgba(0,0,0,.06);--sk-b:rgba(0,0,0,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sk-a:rgba(255,255,255,.05);--sk-b:rgba(255,255,255,.11)}}
+:root[data-theme="dark"]{--sk-a:rgba(255,255,255,.05);--sk-b:rgba(255,255,255,.11)}
+
+/* conteggio stelle in caricamento */
+.gh-star .n.sk{display:inline-block;width:22px;height:11px;color:transparent}
+
+/* immagini in caricamento */
+.feature .cover.shots img,.tile img{opacity:0;transition:opacity .5s var(--ease)}
+.feature .cover.shots img.ld,.tile img.ld{opacity:1}
+.tile .imgwrap{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--hairline)}
+.tile .imgwrap.sk{border-radius:0}
+.tile .imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-bottom:0}
+.tile .imgwrap.done{background:none;animation:none}
+.feature .cover.shots.done::before{opacity:0}
+.feature .cover.shots::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.10) 38%,rgba(255,255,255,.04) 76%) 0 0/200% 100%;
+  animation:sk-shimmer 1.5s linear infinite;transition:opacity .5s var(--ease);
+}
+@media (prefers-reduced-motion:reduce){.sk,.feature .cover.shots::before{animation:none}}
+
 /* ---------- github star button ---------- */
 .gh-star{
   display:inline-flex;align-items:stretch;vertical-align:middle;
@@ -398,7 +428,7 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
     <article class="feature">
       <div class="cover"><img src="images/annona-cover.svg" alt="Annona architecture: a policy engine routing agent steps to local, enclave or cloud, with an audit log"></div>
       <div class="body">
-        <h3>Annona &mdash; execution kernel for AI agents <a class="gh-star" data-repo="akaion-ai/annona" href="https://github.com/akaion-ai/annona" aria-label="Star akaion-ai/annona on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></h3>
+        <h3>Annona &mdash; execution kernel for AI agents <a class="gh-star" data-repo="akaion-ai/annona" href="https://github.com/akaion-ai/annona" aria-label="Star akaion-ai/annona on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n sk">00</span></span></a></h3>
         <p class="kicker">Open source &middot; Apache-2.0 &middot; Python &middot; 2026</p>
         <p>A sovereign execution kernel: it decides <em>where</em> each step of an agent runs, enforces that decision, and records it. The point is control and auditability &mdash; knowing that a step touching sensitive data ran where it was allowed to, and being able to prove it afterwards.</p>
         <p>It grew out of a concrete problem. Agent frameworks will happily send anything anywhere, which is a non-starter the moment you handle clinical or regulated data.</p>
@@ -453,42 +483,42 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
     <div class="grid">
 
       <article class="tile">
-        <img src="images/ultrasound.png" alt="Ultrasound image classification">
+        <div class="imgwrap sk"><img src="images/ultrasound.png" alt="Ultrasound image classification"></div>
         <div class="body">
           <h3>Ultrasound classification API</h3>
           <p class="kicker">2023 &middot; Python, FastAPI</p>
           <p>Multi-class classification of ultrasound images, built to back the MLOps pipeline described in our biomedical paper. The JSON response returns the probability of each class.</p>
-          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/API-Ultrasound-Classificator">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/API-Ultrasound-Classificator" href="https://github.com/M-ballabio1/API-Ultrasound-Classificator" aria-label="Star M-ballabio1/API-Ultrasound-Classificator on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/API-Ultrasound-Classificator">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/API-Ultrasound-Classificator" href="https://github.com/M-ballabio1/API-Ultrasound-Classificator" aria-label="Star M-ballabio1/API-Ultrasound-Classificator on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n sk">00</span></span></a></div>
         </div>
       </article>
 
       <article class="tile">
-        <img src="images/neuro3.jpg" alt="3D MRI neuroimaging pipeline">
+        <div class="imgwrap sk"><img src="images/neuro3.jpg" alt="3D MRI neuroimaging pipeline"></div>
         <div class="body">
           <h3>Neuroimaging thesis project</h3>
           <p class="kicker">2021 &middot; 3D U-Net, Docker</p>
           <p>A semi-automatic pipeline for 3D MRI processing, benchmarked against a 3D U-Net. Reproducibility ensured through an open project and a containerised app published on Brainlife.io.</p>
-          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/Neuroimaging-Thesis-Project">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/Neuroimaging-Thesis-Project" href="https://github.com/M-ballabio1/Neuroimaging-Thesis-Project" aria-label="Star M-ballabio1/Neuroimaging-Thesis-Project on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/Neuroimaging-Thesis-Project">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/Neuroimaging-Thesis-Project" href="https://github.com/M-ballabio1/Neuroimaging-Thesis-Project" aria-label="Star M-ballabio1/Neuroimaging-Thesis-Project on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n sk">00</span></span></a></div>
         </div>
       </article>
 
       <article class="tile">
-        <img src="images/healthcare.jpg" alt="Healthcare data platform">
+        <div class="imgwrap sk"><img src="images/healthcare.jpg" alt="Healthcare data platform"></div>
         <div class="body">
           <h3>Patient satisfaction platform</h3>
           <p class="kicker">2023 &middot; React, FastAPI</p>
           <p>A proof of concept for small and mid-sized healthcare facilities: integrating patient questionnaire data (PREM) with operational and economic metrics to support a data-driven improvement strategy.</p>
-          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/MeHEDI-app">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/MeHEDI-app" href="https://github.com/M-ballabio1/MeHEDI-app" aria-label="Star M-ballabio1/MeHEDI-app on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/MeHEDI-app">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/MeHEDI-app" href="https://github.com/M-ballabio1/MeHEDI-app" aria-label="Star M-ballabio1/MeHEDI-app on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n sk">00</span></span></a></div>
         </div>
       </article>
 
       <article class="tile">
-        <img src="images/emission.jpg" alt="Energy and emissions forecasting">
+        <div class="imgwrap sk"><img src="images/emission.jpg" alt="Energy and emissions forecasting"></div>
         <div class="body">
           <h3>Energy forecasting, USA</h3>
           <p class="kicker">2022 &middot; Time series</p>
           <p>Forecasting CO&#8322; emissions with advanced regression (Lasso), autoregressive models (ARIMA, GARCH, RegARIMA) and dynamic regression via state-space models and the Kalman filter.</p>
-          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/EEFU-MachineLearning_TimeSeries">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/EEFU-MachineLearning_TimeSeries" href="https://github.com/M-ballabio1/EEFU-MachineLearning_TimeSeries" aria-label="Star M-ballabio1/EEFU-MachineLearning_TimeSeries on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/EEFU-MachineLearning_TimeSeries">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/EEFU-MachineLearning_TimeSeries" href="https://github.com/M-ballabio1/EEFU-MachineLearning_TimeSeries" aria-label="Star M-ballabio1/EEFU-MachineLearning_TimeSeries on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n sk">00</span></span></a></div>
         </div>
       </article>
 
@@ -565,12 +595,14 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
     requestAnimationFrame(step);
   }
   els.forEach(function(el){
+    el.classList.add('on');
     fetch('https://api.github.com/repos/'+el.dataset.repo)
       .then(function(r){ if(!r.ok) throw 0; return r.json(); })
       .then(function(d){
         if(typeof d.stargazers_count!=='number') throw 0;
-        el.classList.add('on');
-        countTo(el.querySelector('.n'),d.stargazers_count);
+        var n=el.querySelector('.n');
+        n.classList.remove('sk');
+        countTo(n,d.stargazers_count);
       })
       .catch(function(){ el.remove(); });
   });
@@ -586,6 +618,21 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
   m.addEventListener('click',function(e){if(e.target.tagName==='A') set(false);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape') set(false);});
   window.addEventListener('resize',function(){if(window.innerWidth>640) set(false);});
+})();
+</script>
+
+<script>
+(function(){
+  function done(img){
+    img.classList.add('ld');
+    var w=img.closest('.imgwrap'); if(w){w.classList.remove('sk');w.classList.add('done');}
+    var c=img.closest('.cover.shots');
+    if(c && [].every.call(c.querySelectorAll('img'),function(i){return i.complete;})) c.classList.add('done');
+  }
+  [].forEach.call(document.querySelectorAll('.cover.shots img,.tile img'),function(img){
+    if(img.complete && img.naturalWidth) done(img);
+    else{ img.addEventListener('load',function(){done(img);}); img.addEventListener('error',function(){done(img);}); }
+  });
 })();
 </script>
 </body>
