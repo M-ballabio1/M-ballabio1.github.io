@@ -182,7 +182,7 @@ section:last-of-type{border-bottom:0}
 
 /* ---------- contact ---------- */
 .contact-lede{font-size:var(--t-h2);line-height:1.35;letter-spacing:-.018em;color:var(--ink-2);max-width:34ch;margin:0 0 var(--s6);font-weight:500}
-footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro);display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
+footer{border-top:1px solid var(--hairline);color:var(--ink-3);font-size:var(--t-micro)}
 
 
 /* ---------- github stars ---------- */
@@ -255,6 +255,45 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
   .store{padding:8px 13px 8px 11px;font-size:.875rem}
 }
 
+
+
+/* ---------- serif accent (New York / Georgia) ---------- */
+.accent{
+  font-family:"New York","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+  font-style:italic;font-weight:400;letter-spacing:-.005em;
+}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.portrait{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--hairline);background:var(--surface-2);aspect-ratio:4/5;
+}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.portrait .ht{opacity:0;transition:opacity .55s var(--ease)}
+.portrait:hover .ht{opacity:1}
+.portrait::after{
+  content:"Como, Italy";position:absolute;left:0;right:0;bottom:0;
+  padding:26px 16px 12px;font-size:var(--t-micro);color:#fff;letter-spacing:.02em;
+  background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+}
+.about-body p{color:var(--ink-2);margin:0 0 var(--s4);max-width:60ch}
+.about-body p:last-child{margin-bottom:0}
+.about-body p.lead{color:var(--ink);font-size:var(--t-h2);line-height:1.35;letter-spacing:-.018em;font-weight:500;margin-bottom:var(--s5)}
+@media (max-width:700px){
+  .about{grid-template-columns:1fr;gap:var(--s6)}
+  .portrait{max-width:260px}
+}
+
+/* ---------- footer columns ---------- */
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s6) var(--s5);padding:var(--s8) 0 var(--s6)}
+.foot-col h4{font-size:var(--t-micro);font-weight:600;color:var(--ink);margin:0 0 var(--s3);letter-spacing:.01em}
+.foot-col ul{list-style:none;margin:0;padding:0}
+.foot-col li{margin-bottom:9px}
+.foot-col a{font-size:var(--t-micro);color:var(--ink-3)}
+.foot-col a:hover{color:var(--ink)}
+.foot-legal{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);justify-content:space-between;
+  padding:var(--s5) 0 var(--s8);border-top:1px solid var(--hairline);color:var(--ink-3);font-size:var(--t-micro)}
 
 /* ---------- skeleton ---------- */
 @keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
@@ -371,7 +410,7 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
   .grid{grid-template-columns:1fr;gap:var(--s4)}
   .cta{padding:11px 20px}
   .cta-row{gap:var(--s2)}
-  footer{flex-direction:column;gap:var(--s2)}
+
 }
 @media (max-width:400px){
   .hero h1{font-size:2.4rem}
@@ -391,6 +430,7 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navmenu"><span></span></button>
     <ul id="navmenu">
       <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#earlier">Earlier</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#stack">Stack</a></li>
@@ -402,7 +442,7 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
 <header class="hero">
   <div class="wrap">
     <h1>Matteo Ballabio</h1>
-    <p class="tag">AI/ML and cloud engineer, with a biomedical engineering background.</p>
+    <p class="tag">AI/ML and cloud engineer, with a <span class="accent">biomedical</span> engineering background.</p>
     <div class="chips">
       <span class="chip hi">Available immediately &middot; no notice period</span>
       <span class="chip">EU citizen &mdash; no permit sponsorship</span>
@@ -422,7 +462,7 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
 <section id="work">
   <div class="wrap">
     <p class="eyebrow">What I'm building</p>
-    <h2 class="sec-title">Six years across cloud infrastructure,<br>MLOps and healthcare AI.</h2>
+    <h2 class="sec-title">Six years across cloud infrastructure,<br>MLOps and <span class="accent">healthcare</span> AI.</h2>
     <p style="color:var(--ink-2);max-width:62ch;margin:calc(var(--s7)*-1 + var(--s5)) 0 var(--s7)">At <strong>Akaion</strong> I lead the technical team of five in a company of eight, and own infrastructure strategy, architecture and technical hiring. The platform reached 1,250+ users in its first three months across two products and five SMB clients.</p>
 
     <article class="feature">
@@ -476,10 +516,28 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
   </div>
 </section>
 
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">Who I am</p>
+    <div class="about">
+      <div class="portrait">
+        <img src="images/matteo.jpg" alt="Matteo Ballabio">
+        <img class="ht" src="images/matteo-halftone.png" alt="" aria-hidden="true">
+      </div>
+      <div class="about-body">
+        <p class="lead">I came to software through <span class="accent">biomedical</span> engineering, and I never quite left the clinical side behind.</p>
+        <p>My degree was in biomedical engineering, my thesis segmented paediatric brain MRI with a 3D U-Net, and my first publications were about making machine learning reproducible in a hospital setting. Then I spent three years building cloud infrastructure at PwC and Capgemini, and a year writing firmware for laboratory instruments.</p>
+        <p>That combination is the thing I actually offer. Plenty of engineers can run a Kubernetes cluster; plenty of researchers understand clinical data. Being able to hold both at once &mdash; and to argue about where a piece of patient data is allowed to be processed &mdash; is rarer, and it is why I ended up writing <a href="https://github.com/akaion-ai/annona">Annona</a>.</p>
+        <p>I live in Como, forty minutes from Lugano and an hour from Milan. I read and write Italian and English daily, and I am working through German with the aim of a B2 by spring 2027.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="earlier">
   <div class="wrap">
     <p class="eyebrow">Earlier work</p>
-    <h2 class="sec-title sub">Research code and applied projects.</h2>
+    <h2 class="sec-title sub">Research code and <span class="accent">applied</span> projects.</h2>
     <div class="grid">
 
       <article class="tile">
@@ -564,7 +622,7 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
 <section id="contact">
   <div class="wrap">
     <p class="eyebrow">Get in touch</p>
-    <p class="contact-lede">Looking for AI/ML, cloud and platform engineering roles in Switzerland.</p>
+    <p class="contact-lede">Looking for AI/ML, cloud and platform engineering roles in <span class="accent">Switzerland</span>.</p>
     <div class="cta-row">
       <a class="cta" href="mailto:matteoballabio99@gmail.com">matteoballabio99@gmail.com</a>
       <a class="cta ghost" href="https://www.linkedin.com/in/matteo-ballabio/">LinkedIn</a>
@@ -573,8 +631,45 @@ footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro)
 </section>
 
 <footer class="wrap">
-  <span>&copy; 2026 Matteo Ballabio</span>
-  <span>Como, Italy</span>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h4>Work</h4>
+      <ul>
+        <li><a href="https://github.com/akaion-ai/annona">Annona</a></li>
+        <li><a href="https://akaion.com">Akaion</a></li>
+        <li><a href="https://aionvibes.com">aion vibes</a></li>
+        <li><a href="#earlier">Earlier projects</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Apps</h4>
+      <ul>
+        <li><a href="https://apps.apple.com/it/app/akaion/id6762483513">Akaion &mdash; App Store</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.akaion.app">Akaion &mdash; Google Play</a></li>
+        <li><a href="https://apps.apple.com/it/app/aion-vibes/id6789653547">Aion Vibes &mdash; App Store</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.aion.events">Aion Vibes &mdash; Google Play</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://github.com/M-ballabio1">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/matteo-ballabio/">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=93ReZbsAAAAJ&amp;hl=it">Google Scholar</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:matteoballabio99@gmail.com">matteoballabio99@gmail.com</a></li>
+        <li><a href="#contact">Availability</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-legal">
+    <span>&copy; 2026 Matteo Ballabio</span>
+    <span>Como, Italy &middot; open to roles in Switzerland</span>
+  </div>
 </footer>
 
 
