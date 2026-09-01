@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matteo Ballabio — AI/ML &amp; Cloud Engineer</title>
+<meta name="description" content="AI/ML and cloud engineer with a biomedical engineering background. Cloud-native infrastructure, MLOps and healthcare AI. Author of Annona, an open-source execution kernel for AI agents.">
+<meta property="og:title" content="Matteo Ballabio — AI/ML &amp; Cloud Engineer">
+<meta property="og:description" content="Cloud-native infrastructure, MLOps and healthcare AI. Author of Annona, an open-source execution kernel for AI agents.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<style>
+/* ============================================================
+   DESIGN SYSTEM
+   ============================================================ */
+:root{
+  /* — palette (light) — */
+  --ink:#1d1d1f;          /* primary text          */
+  --ink-2:#484850;        /* secondary text        */
+  --ink-3:#86868b;        /* tertiary / captions   */
+  --surface:#ffffff;      /* page                  */
+  --surface-2:#f5f5f7;    /* raised panel          */
+  --surface-3:#ebebef;    /* chips                 */
+  --hairline:rgba(0,0,0,.10);
+  --accent:#0071e3;
+  --accent-ink:#0058b0;
+
+  /* — type scale (1.25 minor third, tightened) — */
+  --t-display:clamp(2.9rem, 7.2vw, 5.2rem);
+  --t-h1:clamp(2rem, 4.4vw, 3rem);
+  --t-h2:clamp(1.35rem, 2.4vw, 1.75rem);
+  --t-h3:1.125rem;
+  --t-body:1.0625rem;
+  --t-small:.9375rem;
+  --t-micro:.8125rem;
+
+  /* — spacing (8pt grid) — */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:136px;
+
+  /* — form — */
+  --r-sm:10px; --r-md:16px; --r-lg:24px; --r-full:980px;
+  --max:1040px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#f5f5f7; --ink-2:#c4c4cc; --ink-3:#8a8a91;
+    --surface:#000000; --surface-2:#101012; --surface-3:#1c1c1f;
+    --hairline:rgba(255,255,255,.13);
+    --accent:#2997ff; --accent-ink:#6cb8ff;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#f5f5f7; --ink-2:#c4c4cc; --ink-3:#8a8a91;
+  --surface:#000000; --surface-2:#101012; --surface-3:#1c1c1f;
+  --hairline:rgba(255,255,255,.13);
+  --accent:#2997ff; --accent-ink:#6cb8ff;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--surface);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  font-size:var(--t-body);line-height:1.53;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+img{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none;transition:color .2s var(--ease)}
+a:hover{color:var(--accent-ink)}
+::selection{background:var(--accent);color:#fff}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:48px}
+.nav .mark{font-size:var(--t-small);font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.nav ul{display:flex;gap:var(--s5);list-style:none;margin:0;padding:0}
+.nav a{font-size:var(--t-micro);color:var(--ink-2);letter-spacing:.01em}
+.nav a:hover{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding:var(--s10) 0 var(--s9);border-bottom:1px solid var(--hairline)}
+.hero h1{
+  font-size:var(--t-display);line-height:1.02;letter-spacing:-.035em;
+  font-weight:700;margin:0 0 var(--s4);
+}
+.hero .tag{
+  font-size:var(--t-h2);line-height:1.3;letter-spacing:-.018em;
+  color:var(--ink-2);font-weight:500;margin:0 0 var(--s6);max-width:24ch;
+}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s6)}
+.chip{
+  font-size:var(--t-micro);letter-spacing:.005em;color:var(--ink-2);
+  background:var(--surface-3);border-radius:var(--r-full);padding:6px 14px;white-space:nowrap;
+}
+.chip.hi{background:var(--accent);color:#fff}
+.hero-links{display:flex;flex-wrap:wrap;gap:var(--s5);font-size:var(--t-small)}
+
+/* ---------- sections ---------- */
+section{padding:var(--s9) 0;border-bottom:1px solid var(--hairline)}
+section:last-of-type{border-bottom:0}
+.eyebrow{
+  font-size:var(--t-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 var(--s3);
+}
+.sec-title{
+  font-size:var(--t-h1);line-height:1.1;letter-spacing:-.028em;font-weight:700;margin:0 0 var(--s7);
+}
+.sec-title.sub{font-size:var(--t-h2);letter-spacing:-.02em;margin-bottom:var(--s6)}
+
+/* ---------- feature cards ---------- */
+.feature{
+  background:var(--surface-2);border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--hairline);margin-bottom:var(--s5);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.feature:hover{transform:translateY(-3px);box-shadow:0 14px 40px -18px rgba(0,0,0,.35)}
+.feature .cover{border-bottom:1px solid var(--hairline);background:var(--surface-3)}
+.feature .cover img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover}
+.feature .body{padding:clamp(24px,4vw,40px)}
+.feature h3{
+  font-size:var(--t-h2);line-height:1.18;letter-spacing:-.022em;font-weight:650;margin:0 0 var(--s2);
+}
+.feature .kicker{
+  font-size:var(--t-micro);color:var(--ink-3);letter-spacing:.02em;margin:0 0 var(--s4);
+}
+.feature p{margin:0 0 var(--s4);color:var(--ink-2);max-width:66ch}
+.feature p:last-of-type{margin-bottom:0}
+.feature ul{margin:var(--s4) 0 0;padding-left:1.1em;color:var(--ink-2);max-width:66ch}
+.feature li{margin-bottom:var(--s2)}
+.cta{
+  display:inline-flex;align-items:center;gap:6px;margin-top:var(--s5);
+  font-size:var(--t-small);font-weight:500;
+  background:var(--accent);color:#fff;border-radius:var(--r-full);padding:9px 20px;
+  transition:opacity .2s var(--ease),transform .2s var(--ease);
+}
+.cta:hover{opacity:.86;color:#fff;transform:translateY(-1px)}
+.cta.ghost{background:transparent;color:var(--accent);border:1px solid var(--hairline)}
+.cta.ghost:hover{color:var(--accent-ink);background:var(--surface-3)}
+.cta-row{display:flex;flex-wrap:wrap;gap:var(--s3)}
+
+/* ---------- grid of earlier work ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s5)}
+.tile{
+  background:var(--surface-2);border:1px solid var(--hairline);border-radius:var(--r-md);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.tile:hover{transform:translateY(-3px);box-shadow:0 12px 32px -18px rgba(0,0,0,.34)}
+.tile img{width:100%;aspect-ratio:16/10;object-fit:cover;border-bottom:1px solid var(--hairline)}
+.tile .body{padding:var(--s5);display:flex;flex-direction:column;flex:1}
+.tile h3{font-size:var(--t-h3);letter-spacing:-.014em;font-weight:600;margin:0 0 var(--s1)}
+.tile .kicker{font-size:var(--t-micro);color:var(--ink-3);margin:0 0 var(--s3)}
+.tile p{font-size:var(--t-small);color:var(--ink-2);margin:0 0 var(--s4);flex:1}
+.tile a.more{font-size:var(--t-small);font-weight:500}
+
+/* ---------- spec rows ---------- */
+.specs{border-top:1px solid var(--hairline)}
+.spec{
+  display:grid;grid-template-columns:180px 1fr;gap:var(--s3) var(--s6);
+  padding:var(--s5) 0;border-bottom:1px solid var(--hairline);
+}
+.spec dt{font-size:var(--t-small);font-weight:600;color:var(--ink-3);letter-spacing:.01em;margin:0}
+.spec dd{margin:0;color:var(--ink-2)}
+@media (max-width:640px){.spec{grid-template-columns:1fr;gap:var(--s1)}}
+
+/* ---------- publications ---------- */
+.pub{padding:var(--s5) 0;border-bottom:1px solid var(--hairline)}
+.pub:first-of-type{border-top:1px solid var(--hairline)}
+.pub h3{font-size:var(--t-h3);font-weight:600;letter-spacing:-.012em;margin:0 0 var(--s1)}
+.pub .where{font-size:var(--t-small);color:var(--ink-3);margin:0}
+
+/* ---------- contact ---------- */
+.contact-lede{font-size:var(--t-h2);line-height:1.35;letter-spacing:-.018em;color:var(--ink-2);max-width:34ch;margin:0 0 var(--s6);font-weight:500}
+footer{padding:var(--s7) 0 var(--s8);color:var(--ink-3);font-size:var(--t-micro);display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
+
+
+/* ---------- github stars ---------- */
+.stars{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:var(--t-micro);font-weight:600;letter-spacing:.01em;
+  color:#b78a2e;background:rgba(212,160,53,.12);
+  border:1px solid rgba(212,160,53,.28);
+  border-radius:var(--r-full);padding:4px 11px 4px 9px;
+  vertical-align:middle;opacity:0;transform:translateY(3px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.stars.on{opacity:1;transform:none}
+.stars svg{width:13px;height:13px;flex:none}
+.stars .n{font-variant-numeric:tabular-nums}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .stars{color:#e8c063;}
+}
+.tile .stars{margin-left:auto}
+.tile .foot{display:flex;align-items:center;gap:var(--s3);margin-top:auto}
+.feature h3 .stars{margin-left:var(--s3)}
+
+
+
+/* ---------- app shots ---------- */
+.feature .cover.shots{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(12px,2vw,28px);
+  aspect-ratio:1200/540;overflow:hidden;position:relative;border-bottom:1px solid var(--hairline);
+}
+.feature .cover.shots img{
+  width:auto;height:84%;aspect-ratio:auto;object-fit:contain;
+  border-radius:clamp(9px,1.1vw,15px);
+  box-shadow:0 22px 50px -16px rgba(0,0,0,.6);
+  transform:translateY(9%);
+  transition:transform .5s var(--ease);
+}
+.feature .cover.shots img:nth-child(1){transform:translateY(13%) rotate(-2deg)}
+.feature .cover.shots img:nth-child(3){transform:translateY(13%) rotate(2deg)}
+.feature .cover.shots img:nth-child(2){z-index:2;height:92%}
+.feature:hover .cover.shots img:nth-child(1){transform:translateY(8%) rotate(-3deg)}
+.feature:hover .cover.shots img:nth-child(3){transform:translateY(8%) rotate(3deg)}
+.feature:hover .cover.shots img:nth-child(2){transform:translateY(4%)}
+.feature .cover.shots-akaion{background:radial-gradient(115% 85% at 50% 5%,#7b6bf5 0%,#4c3fb4 45%,#211b52 100%)}
+.feature .cover.shots-vibes{background:radial-gradient(115% 85% at 50% 5%,#4a3486 0%,#281c50 48%,#100b1e 100%)}
+@media (max-width:640px){
+  .feature .cover.shots{aspect-ratio:1200/620;gap:8px}
+  .feature .cover.shots img{height:78%}
+  .feature .cover.shots img:nth-child(2){height:86%}
+}
+
+/* ---------- store buttons ---------- */
+.stores{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5);align-items:center}
+.store{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--hairline);border-radius:12px;
+  padding:9px 16px 9px 13px;background:var(--surface-3);color:var(--ink);
+  font-size:var(--t-small);font-weight:500;line-height:1.15;
+  transition:transform .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease);
+}
+.store:hover{color:var(--ink);transform:translateY(-1px);border-color:var(--ink-3);background:var(--surface-2)}
+.store svg{width:19px;height:19px;flex:none;opacity:.9}
+.store .lab{display:flex;flex-direction:column;gap:1px}
+.store .lab small{font-size:.6875rem;color:var(--ink-3);letter-spacing:.02em}
+.app-icon{width:44px;height:44px;border-radius:11px;border:1px solid var(--hairline);flex:none}
+.appline{display:flex;align-items:center;gap:var(--s3);margin:0 0 var(--s4)}
+.appline .meta{font-size:var(--t-micro);color:var(--ink-3);line-height:1.45}
+@media (max-width:640px){
+  .stores{gap:var(--s2)}
+  .store{padding:8px 13px 8px 11px;font-size:.875rem}
+}
+
+/* ---------- github star button ---------- */
+.gh-star{
+  display:inline-flex;align-items:stretch;vertical-align:middle;
+  font-size:var(--t-micro);font-weight:600;line-height:1;
+  border-radius:7px;overflow:visible;position:relative;
+  opacity:0;transform:translateY(3px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+}
+.gh-star.on{opacity:1;transform:none}
+.gh-star .btn,.gh-star .cnt{
+  border:1px solid var(--gh-line);background:var(--gh-bg);color:var(--gh-fg);
+  padding:6px 11px;display:inline-flex;align-items:center;gap:6px;
+  transition:background .18s var(--ease),border-color .18s var(--ease);
+}
+.gh-star .btn{border-radius:7px 0 0 7px;border-right:0}
+.gh-star .cnt{border-radius:0 7px 7px 0;margin-left:9px;font-variant-numeric:tabular-nums}
+.gh-star:hover .btn,.gh-star:hover .cnt{background:var(--gh-bg-h);border-color:var(--gh-line-h)}
+.gh-star svg{width:14px;height:14px;flex:none;color:#e3b341}
+/* notch */
+.gh-star .cnt::before,.gh-star .cnt::after{
+  content:"";position:absolute;top:50%;margin-top:-5px;
+  border:5px solid transparent;pointer-events:none;
+}
+.gh-star .cnt::before{right:100%;margin-right:-1px;border-right-color:var(--gh-line)}
+.gh-star .cnt::after{right:100%;margin-right:-2px;border-right-color:var(--gh-bg)}
+.gh-star:hover .cnt::before{border-right-color:var(--gh-line-h)}
+.gh-star:hover .cnt::after{border-right-color:var(--gh-bg-h)}
+:root{--gh-bg:#f6f8fa;--gh-bg-h:#eef1f4;--gh-line:#d1d9e0;--gh-line-h:#b9c2cc;--gh-fg:#25292e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --gh-bg:#21262d;--gh-bg-h:#2a3138;--gh-line:#3d444d;--gh-line-h:#4a525b;--gh-fg:#f0f6fc}}
+:root[data-theme="dark"]{--gh-bg:#21262d;--gh-bg-h:#2a3138;--gh-line:#3d444d;--gh-line-h:#4a525b;--gh-fg:#f0f6fc}
+.feature h3 .gh-star{margin-left:var(--s3)}
+.tile .foot{display:flex;align-items:center;gap:var(--s4);margin-top:auto;flex-wrap:wrap}
+
+/* ---------- hamburger ---------- */
+.burger{
+  display:none;width:40px;height:40px;margin-right:-8px;
+  align-items:center;justify-content:center;
+  background:none;border:0;cursor:pointer;color:var(--ink);border-radius:9px;
+}
+.burger:hover{background:var(--surface-3)}
+.burger span{display:block;width:19px;height:1.5px;background:currentColor;border-radius:2px;position:relative;transition:transform .3s var(--ease),opacity .2s var(--ease)}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:19px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease)}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(-90deg)}
+.burger[aria-expanded="true"] span::after{opacity:0}
+
+/* ---------- mobile ---------- */
+@media (max-width:900px){
+  :root{--s9:72px;--s10:88px}
+}
+@media (max-width:640px){
+  :root{--s9:56px;--s10:64px;--t-body:1rem}
+  .nav-in{height:44px}
+  .burger{display:inline-flex}
+  .nav .mark{display:block}
+  .nav ul{
+    position:absolute;left:0;right:0;top:100%;
+    display:grid;gap:0;padding:var(--s2) 0 var(--s4);
+    background:color-mix(in srgb,var(--surface) 94%,transparent);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--hairline);
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .26s var(--ease),transform .26s var(--ease),visibility .26s;
+  }
+  .nav ul.open{opacity:1;visibility:visible;transform:none}
+  .nav ul li{padding:0 clamp(20px,5vw,40px)}
+  .nav ul a{display:block;padding:13px 0;font-size:1rem;color:var(--ink);border-bottom:1px solid var(--hairline)}
+  .nav ul li:last-child a{border-bottom:0}
+  .hero h1{letter-spacing:-.028em}
+  .hero .tag{max-width:none;font-size:1.25rem}
+  .chips{gap:6px}
+  .chip{font-size:.75rem;padding:5px 11px}
+  .hero-links{gap:var(--s3) var(--s4);font-size:.9375rem}
+  .feature{border-radius:var(--r-md);margin-bottom:var(--s4)}
+  .feature .body{padding:var(--s5)}
+  .feature h3{font-size:1.25rem}
+  .feature h3 .stars{margin-left:0;margin-top:var(--s2);display:inline-flex}
+  .sec-title{font-size:1.65rem;margin-bottom:var(--s6)}
+  .sec-title.sub{font-size:1.35rem}
+  .grid{grid-template-columns:1fr;gap:var(--s4)}
+  .cta{padding:11px 20px}
+  .cta-row{gap:var(--s2)}
+  footer{flex-direction:column;gap:var(--s2)}
+}
+@media (max-width:400px){
+  .hero h1{font-size:2.4rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <span class="mark">Matteo Ballabio</span>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navmenu"><span></span></button>
+    <ul id="navmenu">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#earlier">Earlier</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Matteo Ballabio</h1>
+    <p class="tag">AI/ML and cloud engineer, with a biomedical engineering background.</p>
+    <div class="chips">
+      <span class="chip hi">Available immediately &middot; no notice period</span>
+      <span class="chip">EU citizen &mdash; no permit sponsorship</span>
+      <span class="chip">Como, Italy &middot; 40 min from Lugano</span>
+      <span class="chip">Two apps shipped &middot; App Store &amp; Google Play</span>
+      <span class="chip">IT native &middot; EN C1 &middot; DE B1</span>
+    </div>
+    <div class="hero-links">
+      <a href="mailto:matteoballabio99@gmail.com">matteoballabio99@gmail.com</a>
+      <a href="https://www.linkedin.com/in/matteo-ballabio/">LinkedIn</a>
+      <a href="https://github.com/M-ballabio1">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=93ReZbsAAAAJ&amp;hl=it">Google Scholar</a>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <p class="eyebrow">What I'm building</p>
+    <h2 class="sec-title">Six years across cloud infrastructure,<br>MLOps and healthcare AI.</h2>
+    <p style="color:var(--ink-2);max-width:62ch;margin:calc(var(--s7)*-1 + var(--s5)) 0 var(--s7)">At <strong>Akaion</strong> I lead the technical team of five in a company of eight, and own infrastructure strategy, architecture and technical hiring. The platform reached 1,250+ users in its first three months across two products and five SMB clients.</p>
+
+    <article class="feature">
+      <div class="cover"><img src="images/annona-cover.svg" alt="Annona architecture: a policy engine routing agent steps to local, enclave or cloud, with an audit log"></div>
+      <div class="body">
+        <h3>Annona &mdash; execution kernel for AI agents <a class="gh-star" data-repo="akaion-ai/annona" href="https://github.com/akaion-ai/annona" aria-label="Star akaion-ai/annona on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></h3>
+        <p class="kicker">Open source &middot; Apache-2.0 &middot; Python &middot; 2026</p>
+        <p>A sovereign execution kernel: it decides <em>where</em> each step of an agent runs, enforces that decision, and records it. The point is control and auditability &mdash; knowing that a step touching sensitive data ran where it was allowed to, and being able to prove it afterwards.</p>
+        <p>It grew out of a concrete problem. Agent frameworks will happily send anything anywhere, which is a non-starter the moment you handle clinical or regulated data.</p>
+        <div class="cta-row">
+          <a class="cta" href="https://github.com/akaion-ai/annona">Source on GitHub</a>
+          <a class="cta ghost" href="https://akaion-ai.github.io/annona/">Documentation</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="cover shots shots-akaion"><img src="images/akaion-shot1.png" alt="Akaion: your time, your life, your friend"><img src="images/akaion-shot2.png" alt="Akaion calendar and Time OS"><img src="images/akaion-shot3.png" alt="Akaion assistant planning the day"></div>
+      <div class="body">
+        <div class="appline"><img class="app-icon" src="images/akaion-icon.png" alt=""><span class="meta">Akaion LifeOS<br>Productivity &middot; released June 2026</span></div>
+        <h3>Akaion &mdash; AI-native personal assistant</h3>
+        <p class="kicker">Co-Founder &amp; CTO &middot; akaion.com &middot; 2026 &ndash; present</p>
+        <p>An assistant that organises time, projects and goals in one place: it reads calendar, inbox and tasks, then plans the day around them instead of just listing what is due.</p>
+        <p>I own the architecture and the infrastructure: Python / FastAPI microservices, PostgreSQL with pgvector, GCP and Vercel, with Claude and Gemini behind the multi-agent layer.</p>
+        <div class="cta-row"><a class="cta" href="https://akaion.com">akaion.com</a></div><div class="stores"><a class="store" href="https://apps.apple.com/it/app/akaion/id6762483513"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.9 12.6c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 3 2.4 1.2 0 1.6-.8 3.1-.8 1.4 0 1.8.8 3.1.7 1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.7zM14.5 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.2-.6 2.9-1.4z"/></svg><span class="lab"><small>Download on the</small>App&nbsp;Store</span></a><a class="store" href="https://play.google.com/store/apps/details?id=com.akaion.app"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34a853" d="M3.6 2.1 14 12.5l-2.7 2.7L3.3 22c-.4-.3-.6-.8-.6-1.4V3.4c0-.5.3-1 .9-1.3z" opacity=".9"/><path fill="#ea4335" d="M16.9 9.4 14 12.5 3.6 2.1c.3-.2.7-.2 1.1 0l12.2 7.3z"/><path fill="#fbbc04" d="M20.6 11.2c.7.4.7 1.7 0 2.1l-3 1.8-2.9-2.6 2.9-3.1 3 1.8z"/><path fill="#4285f4" d="M16.9 15.1 4.7 22.4c-.4.2-.9.2-1.2 0l8-6.8 2.7-2.7 2.7 2.2z"/></svg><span class="lab"><small>Get it on</small>Google&nbsp;Play</span></a></div>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="cover shots shots-vibes"><img src="images/aionvibes-shot1.png" alt="Aion Vibes: discover what is happening in the city"><img src="images/aionvibes-shot2.png" alt="Aion Vibes event feed"><img src="images/aionvibes-shot3.png" alt="Aion Vibes tickets"></div>
+      <div class="body">
+        <div class="appline"><img class="app-icon" src="images/aionvibes-icon.png" alt=""><span class="meta">Aion Vibes<br>Entertainment &middot; v1.2.2, released July 2026</span></div>
+        <h3>aion vibes &mdash; AI-native event management</h3>
+        <p class="kicker">Co-Founder &amp; CTO &middot; aionvibes.com &middot; 2026 &ndash; present</p>
+        <p>Italy's first end-to-end AI-native marketplace for events: create the event, invite people, sell tickets and grow the community, connecting talents, suppliers and organizers in one place.</p>
+        <p>Cross-platform PWA plus a native React Native app, with six service integrations &mdash; Gmail, Drive, Telegram, WhatsApp, payment APIs and device connectors.</p>
+        <div class="cta-row"><a class="cta" href="https://aionvibes.com">aionvibes.com</a></div><div class="stores"><a class="store" href="https://apps.apple.com/it/app/aion-vibes/id6789653547"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.9 12.6c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 3 2.4 1.2 0 1.6-.8 3.1-.8 1.4 0 1.8.8 3.1.7 1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.7zM14.5 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.2-.6 2.9-1.4z"/></svg><span class="lab"><small>Download on the</small>App&nbsp;Store</span></a><a class="store" href="https://play.google.com/store/apps/details?id=com.aion.events"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34a853" d="M3.6 2.1 14 12.5l-2.7 2.7L3.3 22c-.4-.3-.6-.8-.6-1.4V3.4c0-.5.3-1 .9-1.3z" opacity=".9"/><path fill="#ea4335" d="M16.9 9.4 14 12.5 3.6 2.1c.3-.2.7-.2 1.1 0l12.2 7.3z"/><path fill="#fbbc04" d="M20.6 11.2c.7.4.7 1.7 0 2.1l-3 1.8-2.9-2.6 2.9-3.1 3 1.8z"/><path fill="#4285f4" d="M16.9 15.1 4.7 22.4c-.4.2-.9.2-1.2 0l8-6.8 2.7-2.7 2.7 2.2z"/></svg><span class="lab"><small>Get it on</small>Google&nbsp;Play</span></a></div>
+      </div>
+    </article>
+
+    <article class="feature">
+      <div class="cover"><img src="images/firmware-cover.svg" alt="Firmware and IoT pipeline: instrument, firmware, gateway, analytics"></div>
+      <div class="body">
+        <h3>Firmware, IoT and the physical layer</h3>
+        <p class="kicker">Tecniplast &amp; Akaion &middot; 2025 &ndash; 2026</p>
+        <p>The part of my work that doesn't fit the usual &ldquo;AI engineer&rdquo; label. As Firmware &amp; Software Engineer at <strong>Tecniplast</strong> I built embedded firmware for high-precision laboratory equipment, owning the lifecycle from architecture through testing to deployment, and connected IoT lab devices to cloud analytics for real-time monitoring and control.</p>
+        <p>At <strong>Akaion</strong> the same thread continues as hardware orchestration: B2B integrations that let devices, IoT endpoints and machinery be coordinated from the same platform that runs the agents, white-labeled for the client.</p>
+        <p>In practice it means I can reason about latency, device constraints and failure modes on the equipment itself &mdash; not only about the API in front of it.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="earlier">
+  <div class="wrap">
+    <p class="eyebrow">Earlier work</p>
+    <h2 class="sec-title sub">Research code and applied projects.</h2>
+    <div class="grid">
+
+      <article class="tile">
+        <img src="images/ultrasound.png" alt="Ultrasound image classification">
+        <div class="body">
+          <h3>Ultrasound classification API</h3>
+          <p class="kicker">2023 &middot; Python, FastAPI</p>
+          <p>Multi-class classification of ultrasound images, built to back the MLOps pipeline described in our biomedical paper. The JSON response returns the probability of each class.</p>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/API-Ultrasound-Classificator">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/API-Ultrasound-Classificator" href="https://github.com/M-ballabio1/API-Ultrasound-Classificator" aria-label="Star M-ballabio1/API-Ultrasound-Classificator on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+        </div>
+      </article>
+
+      <article class="tile">
+        <img src="images/neuro3.jpg" alt="3D MRI neuroimaging pipeline">
+        <div class="body">
+          <h3>Neuroimaging thesis project</h3>
+          <p class="kicker">2021 &middot; 3D U-Net, Docker</p>
+          <p>A semi-automatic pipeline for 3D MRI processing, benchmarked against a 3D U-Net. Reproducibility ensured through an open project and a containerised app published on Brainlife.io.</p>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/Neuroimaging-Thesis-Project">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/Neuroimaging-Thesis-Project" href="https://github.com/M-ballabio1/Neuroimaging-Thesis-Project" aria-label="Star M-ballabio1/Neuroimaging-Thesis-Project on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+        </div>
+      </article>
+
+      <article class="tile">
+        <img src="images/healthcare.jpg" alt="Healthcare data platform">
+        <div class="body">
+          <h3>Patient satisfaction platform</h3>
+          <p class="kicker">2023 &middot; React, FastAPI</p>
+          <p>A proof of concept for small and mid-sized healthcare facilities: integrating patient questionnaire data (PREM) with operational and economic metrics to support a data-driven improvement strategy.</p>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/MeHEDI-app">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/MeHEDI-app" href="https://github.com/M-ballabio1/MeHEDI-app" aria-label="Star M-ballabio1/MeHEDI-app on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+        </div>
+      </article>
+
+      <article class="tile">
+        <img src="images/emission.jpg" alt="Energy and emissions forecasting">
+        <div class="body">
+          <h3>Energy forecasting, USA</h3>
+          <p class="kicker">2022 &middot; Time series</p>
+          <p>Forecasting CO&#8322; emissions with advanced regression (Lasso), autoregressive models (ARIMA, GARCH, RegARIMA) and dynamic regression via state-space models and the Kalman filter.</p>
+          <div class="foot"><a class="more" href="https://github.com/M-ballabio1/EEFU-MachineLearning_TimeSeries">View project &rarr;</a><a class="gh-star" data-repo="M-ballabio1/EEFU-MachineLearning_TimeSeries" href="https://github.com/M-ballabio1/EEFU-MachineLearning_TimeSeries" aria-label="Star M-ballabio1/EEFU-MachineLearning_TimeSeries on GitHub"><span class="btn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>Star</span><span class="cnt"><span class="n">&mdash;</span></span></a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <p class="eyebrow">Research</p>
+    <h2 class="sec-title sub">Three peer-reviewed publications.</h2>
+    <div class="pub">
+      <h3>MLOps: A Use Case in Biomedical Image Classification</h3>
+      <p class="where">M. Testi, M. Ballabio et al., 2025 &middot; Medical &amp; Biological Engineering &amp; Computing</p>
+    </div>
+    <div class="pub">
+      <h3>MLOps: A Taxonomy and a Methodology</h3>
+      <p class="where">M. Testi, M. Ballabio et al., 2022 &middot; IEEE Access</p>
+    </div>
+    <div class="pub">
+      <h3>DBB &mdash; Distorted Brain Benchmark</h3>
+      <p class="where">Amorosino et al., 2021 &middot; Brainlife.io (contributor)</p>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <p class="eyebrow">Stack</p>
+    <h2 class="sec-title sub">What I work with.</h2>
+    <dl class="specs">
+      <div class="spec"><dt>Cloud &amp; infrastructure</dt><dd>GCP &middot; AWS &middot; Azure &middot; Terraform (IaC) &middot; Docker &middot; CI/CD &middot; MLOps pipelines</dd></div>
+      <div class="spec"><dt>Languages</dt><dd>Python &middot; Go &middot; SQL &middot; Bash</dd></div>
+      <div class="spec"><dt>Backend</dt><dd>FastAPI &middot; Django &middot; PostgreSQL with pgvector</dd></div>
+      <div class="spec"><dt>AI &amp; ML</dt><dd>PyTorch &middot; TensorFlow &middot; LangChain &middot; Claude and Gemini APIs &middot; agentic systems</dd></div>
+      <div class="spec"><dt>Embedded</dt><dd>Firmware &middot; IoT device integration &middot; real-time systems</dd></div>
+      <div class="spec"><dt>Before</dt><dd>Capgemini, Cloud Software Engineer (2024&ndash;2025) &middot; PwC Italy, Cloud Software Engineer (2022&ndash;2024) &middot; Deep Learning Italia, MLOps research (2021&ndash;now) &middot; Fondazione Bruno Kessler (2020&ndash;2021)</dd></div>
+      <div class="spec"><dt>Education</dt><dd>M.Sc. Management &amp; Computer Science Engineering and B.Sc. Biomedical Engineering, University of Bergamo &middot; MicroMasters in AI in Healthcare, MIT Sloan &middot; ML in Health, ETH Zurich (2024)</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Get in touch</p>
+    <p class="contact-lede">Looking for AI/ML, cloud and platform engineering roles in Switzerland.</p>
+    <div class="cta-row">
+      <a class="cta" href="mailto:matteoballabio99@gmail.com">matteoballabio99@gmail.com</a>
+      <a class="cta ghost" href="https://www.linkedin.com/in/matteo-ballabio/">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>&copy; 2026 Matteo Ballabio</span>
+  <span>Como, Italy</span>
+</footer>
+
+
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.gh-star[data-repo]'));
+  if(!els.length) return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countTo(node,target){
+    if(reduce||target<10){node.textContent=target.toLocaleString();return;}
+    var start=performance.now(),dur=900;
+    function step(now){
+      var p=Math.min((now-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      node.textContent=Math.round(target*eased).toLocaleString();
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  els.forEach(function(el){
+    fetch('https://api.github.com/repos/'+el.dataset.repo)
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(d){
+        if(typeof d.stargazers_count!=='number') throw 0;
+        el.classList.add('on');
+        countTo(el.querySelector('.n'),d.stargazers_count);
+      })
+      .catch(function(){ el.remove(); });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),m=document.getElementById('navmenu');
+  if(!b||!m) return;
+  function set(open){b.setAttribute('aria-expanded',open?'true':'false');m.classList.toggle('open',open);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A') set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') set(false);});
+  window.addEventListener('resize',function(){if(window.innerWidth>640) set(false);});
+})();
+</script>
+</body>
+</html>

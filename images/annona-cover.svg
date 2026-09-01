@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Annona: a policy engine routes each agent step to local, enclave or cloud, and every decision is written to an audit log">
+  <defs><linearGradient id="ag" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0f2019"/><stop offset="1" stop-color="#1b3a2c"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#ag)"/>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+    <text x="100" y="92" font-size="54" font-weight="700" fill="#f0faf5" letter-spacing="-1.4">Annona</text>
+    <text x="100" y="132" font-size="22" fill="#7fbb9c">Sovereign execution kernel for AI agents · Apache-2.0</text>
+  </g>
+  <line x1="100" y1="164" x2="1100" y2="164" stroke="#3d6b55" stroke-width="1" opacity=".5"/>
+
+  <g fill="none" stroke="#5da583" stroke-width="1.7" stroke-linecap="round">
+    <rect x="100" y="316" width="200" height="80" rx="12"/>
+    <rect x="470" y="216" width="200" height="80" rx="12"/>
+    <rect x="470" y="316" width="200" height="80" rx="12"/>
+    <rect x="470" y="416" width="200" height="80" rx="12"/>
+    <rect x="850" y="316" width="200" height="80" rx="12"/>
+    <path d="M300 356 H390"/>
+    <path d="M390 256 V456"/>
+    <path d="M390 256 H470 M390 356 H470 M390 456 H470"/>
+    <path d="M670 256 H760 M670 356 H760 M670 456 H760"/>
+    <path d="M760 256 V456"/>
+    <path d="M760 356 H850"/>
+  </g>
+  <g fill="#5da583">
+    <circle cx="390" cy="356" r="4"/><circle cx="760" cy="356" r="4"/>
+  </g>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="21" fill="#c8ecda" text-anchor="middle">
+    <text x="200" y="363">policy</text>
+    <text x="570" y="263">local</text>
+    <text x="570" y="363">enclave</text>
+    <text x="570" y="463">cloud</text>
+    <text x="950" y="363">audit log</text>
+  </g>
+
+  <text x="100" y="572" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="20" fill="#6aa588">decide where each step runs  ·  enforce it  ·  record it</text>
+</svg>
